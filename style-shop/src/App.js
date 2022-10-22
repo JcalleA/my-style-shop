@@ -1,38 +1,38 @@
-
+import React, { useEffect, useState, useParams } from "react";
 import './App.css';
 import { Route, Routes } from "react-router-dom";
 import Barranav from './components/Navbar';
 import Home from './routes/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from './components/Loguin'
-import LogoutButton from './components/Logout'
-import Profile from "./components/Profile";
 import Container from 'react-bootstrap/Container';
 import Servicios from './routes/servicios';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
+import Registro from "./components/Registro";
+import User from "./components/User";
+
 
 
 function App() {
-    const { isAuthenticated } = useAuth0();
-
+    const user = User.user;
+    console.log("Imprimiendo usuario");
+    console.log(user);
     return (
+        
         <Container>
-                <Barranav></Barranav>
-            <Container className='profile'>
-                {isAuthenticated ? (
-                    <>
-                        <Profile />
-                        <LogoutButton />
-                    </>
-                ) : (
-                    <LoginButton />
-                )}
+        
+            <Barranav></Barranav>
+            <Container >
             </Container>
             <Routes>
-                <Route exact path="/"  element={<Home/>} />
-                <Route  path="/servicios"  element={<Servicios/>} />
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route path="/servicios" element={<Servicios />} />
+                </Route>
+                <Route path="/registro" element={<Registro />} />
+                <Route exact path="/" element={<Home user={user} />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
+
         </Container>
     );
 }

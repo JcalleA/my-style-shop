@@ -4,15 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {Auth0Provider} from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <Auth0Provider domain='dev-rflhk1yx.us.auth0.com' clientId='dp7U2nXmRoJhx4HRzobPt5SvAVarLtUJ' redirectUri={window.location.origin}>
       <App />
-    </Auth0Provider>
   </BrowserRouter>
 );
 

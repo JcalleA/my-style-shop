@@ -22,8 +22,26 @@ const Barranav = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to='/'> Inicio </Link>
-                        <Link to="/servicios"> Servicios </Link>
+                        <Link to='/'>
+                            <button>
+                                Home
+                            </button>
+                        </Link>
+                        <Link to="/servicios">
+                            <button>
+                                Servicios
+                            </button>
+                        </Link>
+                        <Link to="/registro">
+                            <button>
+                                Registrarse
+                            </button>
+                        </Link>
+                        <Link to="/login">
+                            <button>
+                                Login
+                            </button>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
