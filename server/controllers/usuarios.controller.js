@@ -122,13 +122,13 @@ exports.login = async (req, res) => {
 };
 
 exports.registrar = async(req, res) => {
-    const{nombre, correo, password} = req.body;
-
+    const{ nombre, correo, password } = req.body;
+  
     Usuario.findOne({ correo }).then((usuario) => {
         if (usuario) {
             return res.json({ mensaje: "Ya existe el correo" })
         } else if (!nombre || !correo || !password) {
-            res.json({ mensaje: "falta informacion" })
+            res.json({ mensaje: "Hay datos por ingresar" });
         } else {
             bcrypt.hash(password, 10, (error, passwordHasheado) => {
                 if (error) res.json({ error });
@@ -139,12 +139,13 @@ exports.registrar = async(req, res) => {
                         password: passwordHasheado,
                     });
                     nuevoUsuario.save().then(( usuario ) => {
-                        res.json({ mensaje:"usuario creado", usuario });
+                        res.json({ mensaje:"Usuario registrado correctamente", usuario });
                     })
-                    .catch((error) => console.error(error));
+                    .catch((error) => console.error('Error al guardar el usuario', error));
                 }
             });
         }
+        console.log(nombre, correo, password);
     });
 }
 
