@@ -27,8 +27,11 @@ exports.findOne = (req, res) => {
 exports.update = () => {
     let usuario = {
         nombre: req.body.nombre,
+        apellidos: req.body.apellidos,
         correo: req.body.mail, 
-        password: req.body.password
+        password: req.body.password,
+        telefono: req.body.telefono,
+        imagenUrl: req.body.imagenUrl
     }
     if (usuario.$isEmpty) 
         console.error("Campos vacios");
@@ -121,31 +124,33 @@ exports.login = async (req, res) => {
     });
 };
 
-exports.registrar = async(req, res) => {
-    const{ nombre, correo, password } = req.body;
+exports.registrar = async (req, res) => {
+    const { nombre, apellidos, correo, password, telefono, imagenUrl } = req.body;
   
     Usuario.findOne({ correo }).then((usuario) => {
         if (usuario) {
-            return res.json({ mensaje: "Ya existe el correo" })
-        } else if (!nombre || !correo || !password) {
+            return res.json({ mensaje: "Ya existe este correo" })
+        } else if (!nombre || !apellidos || !correo || !password || !telefono || !imagenUrl) {
             res.json({ mensaje: "Hay datos por ingresar" });
         } else {
             bcrypt.hash(password, 10, (error, passwordHasheado) => {
-                if (error) res.json({ error });
-                else {
-                    const nuevoUsuario = new Usuario({
-                        nombre,
-                        correo,
-                        password: passwordHasheado,
-                    });
-                    nuevoUsuario.save().then(( usuario ) => {
-                        res.json({ mensaje:"Usuario registrado correctamente", usuario });
-                    })
-                    .catch((error) => console.error('Error al guardar el usuario', error));
+            if (error) res.json({ error });
+            else {
+                const nuevoUsuario = new Usuario({
+                    nombre,
+                    apellidos,
+                    correo,
+                    password: passwordHasheado,
+                    telefono, 
+                    imagenUrl
+                });
+                   nuevoUsuario.save().then(( usuario ) =>  {
+                        res.json({ 
+                            mensaje: "Usuario registrado correctamente", usuario});
+                    }).catch((error) => console.error('Error al guardar el usuario', error));
                 }
             });
         }
-        console.log(nombre, correo, password);
     });
 }
 
