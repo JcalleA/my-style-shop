@@ -6,19 +6,12 @@ import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 import './components.css'
 
-const Registro = props => {
-    const [Mensaje, setMensaje] = useState({
-        mensaje:"",
-    });
+const RegistroNegocio = props => {
     const [form, setForm] = useState({
         nombre: "",
-        apellido: "",
-        correo: "",
+        ciudad: "",
         telefono: "",
-        password: "",
-        imagenUrl: "",
-        hora: date,
-        trabajador:false,
+        
     });
 const date = new Date();
 
@@ -33,8 +26,8 @@ const date = new Date();
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/users/registrar", form)
-            .then(({ data}) => setMensaje(data));
+            .post("http://localhost:3001/users/registrarnegocio", form)
+            .then(({ data }) => console.log(data));
 
     };
 
@@ -43,7 +36,7 @@ const date = new Date();
             <h1 className='h1'>Registrate completando todos los campos</h1>
             <Form onSubmit={onSubmitForm}>
                 <Form.Group className='form-imput'>
-                    <Form.Label className='form-label'  >Nombre</Form.Label>
+                    <Form.Label className='form-label' >Nombre Negocio</Form.Label>
                     <Form.Control
                         className='form-control'
                         type="text"
@@ -54,25 +47,14 @@ const date = new Date();
                     />
                 </Form.Group>
                 <Form.Group className='form-imput'>
-                    <Form.Label className='form-label'  >Apellido</Form.Label>
+                    <Form.Label className='form-label'  >Ciudad</Form.Label>
                     <Form.Control
                         className='form-control'
                         type="text"
                         name="apellido"
                         placeholder="Escriba Su Apellido"
-                        value={form.apellido}
+                        value={form.ciudad}
                         onChange={onUpdateField}
-                    />
-                </Form.Group>
-                <Form.Group className='form-imput' controlId="formBasicEmail">
-                    <Form.Label className='form-label' >Email</Form.Label>
-                    <Form.Control
-                        className='form-control'
-                        type="email"
-                        value={form.correo}
-                        onChange={onUpdateField}
-                        placeholder="Escriba Su Email"
-                        name="correo"
                     />
                 </Form.Group>
                 <Form.Group className='form-imput'>
@@ -86,36 +68,13 @@ const date = new Date();
                         onChange={onUpdateField}
                     />
                 </Form.Group>
-                <Form.Group className='form-imput' controlId="formBasicPassword" >
-                    <Form.Label className='form-label' >Password</Form.Label>
-                    <Form.Control
-                        className='form-control'
-                        type="password"
-                        placeholder="Escriba Una Contraseña"
-                        name="password"
-                        value={form.password}
-                        onChange={onUpdateField}
-                    />
-                </Form.Group>
-                <Form.Group className='form-imput'>
-                    <Form.Label className='form-label'  >Url Imagen</Form.Label>
-                    <Form.Control
-                        className='form-control'
-                        type="text"
-                        value={form.imagenUrl}
-                        onChange={onUpdateField}
-                        name="imagenUrl"
-                        placeholder="Ingrese direccion imagen"
-                    />
-                </Form.Group>
-                <h1>{Mensaje.mensaje}</h1>
                 <h1 className='h1'> Fecha: {date.toDateString()}</h1>
                 <Button className='form-button' type="submit" variant='dark'>
-                    Registrarse
+                    Registrar
                 </Button>
             </Form>
         </Container>
     );
 };
 
-export default Registro;
+export default RegistroNegocio;

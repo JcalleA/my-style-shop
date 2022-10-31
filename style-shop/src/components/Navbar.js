@@ -1,17 +1,19 @@
 import React from 'react';
-import '../App.css'
+import './components.css'
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/esm/Button';
 
 
 
 const Barranav = () => {
     
     return (
-        <Navbar className="nav-bar" expand='lg'>
-            <Container className="nav navbar-nav navbar-center">
+        
+        <Navbar bg='primary' variant='dark'>
+            <Container>
                 <Navbar.Brand >
                 <Link to='/'>
                     <img className="img-logo" src="https://www.seekpng.com/png/detail/816-8167410_logo-image-barbe-shop-barber-logo-barber-shop.png"
@@ -23,24 +25,24 @@ const Barranav = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link to='/'>
-                            <button>
+                            <Button className='nav-button'>
                                 Home
-                            </button>
+                            </Button>
                         </Link>
                         <Link to="/servicios">
-                            <button>
+                            <Button>
                                 Servicios
-                            </button>
+                            </Button>
                         </Link>
                         <Link to="/registro">
-                            <button>
+                            <Button>
                                 Registrarse
-                            </button>
+                            </Button>
                         </Link>
                         <Link to="/login">
-                            <button>
+                            <Button>
                                 Login
-                            </button>
+                            </Button>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

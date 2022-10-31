@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuarios');
 
 const registrar =async(req, res)=>{
-    const{nombre, correo, password}= req.body;
+    const{nombre, correo, password,apellido,telefono,imagenUrl,hora,trabajador}= req.body;
     
     Usuario.findOne({correo}).then((usuario) => {
         if(usuario){
@@ -17,6 +17,11 @@ const registrar =async(req, res)=>{
                         nombre,
                         correo,
                         password: passwordHasheado,
+                        apellido,
+                        telefono,
+                        hora,
+                        imagenUrl,
+                        trabajador,
                     });
                     nuevoUsuario.save().then((usuario)=>{
                         res.json({mensaje:"usuario creado", usuario});

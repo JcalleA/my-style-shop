@@ -1,4 +1,5 @@
 const Usuario = require("../models/usuarios");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -17,26 +18,27 @@ exports.find = (req, res) => {
 exports.findOne = (req, res) => {
     Usuario.findOne({
         _id: req.params.id
-        }, 
+    },
         (err, usuario) => {
             res.json(usuario)
-    }, console.error(err));
+        }, console.error(err));
 }
 
 //update usuario
 exports.update = () => {
     let usuario = {
         nombre: req.body.nombre,
-        apellidos: req.body.apellidos,
-        correo: req.body.mail, 
+        apellidos: req.body.apellido,
+        correo: req.body.correo,
         password: req.body.password,
         telefono: req.body.telefono,
-        imagenUrl: req.body.imagenUrl
+        imagenUrl: req.body.imagenUrl,
+        trabajador: req.body.trabajador
     }
-    if (usuario.$isEmpty) 
+    if (usuario.$isEmpty)
         console.error("Campos vacios");
 
-    usuario.findByIdUpdate(req.params.id, {$set: usuario}, (err) => {
+    usuario.findByIdUpdate(req.params.id, { $set: usuario }, (err) => {
         if (err) {
             console.error("Error:", err);
             response.exito = false;
@@ -47,12 +49,12 @@ exports.update = () => {
         response.exito = true;
         response.msg = "El usuario se actualizo correctamente.";
         res.json(response);
-    });    
+    });
 }
 
 //delete employee
 exports.remove = (res, req) => {
-    Usuario.findByIdAndRemove({_id: req.params.id}, (err) => {
+    Usuario.findByIdAndRemove({ _id: req.params.id }, (err) => {
         if (err) {
             console.error("Error:", err);
             response.exito = false;
@@ -60,7 +62,7 @@ exports.remove = (res, req) => {
             res.json(response)
             return;
         }
-        if (empleado.id == null) 
+        if (empleado.id == null)
             console.error("id nulo");
 
         response.exito = true;
@@ -70,21 +72,21 @@ exports.remove = (res, req) => {
 }
 
 exports.getUser = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     if (id.length === 24) {
         Usuario.findById(id)
-        .then((usuario) => {
-            if (!usuario) {
-                return res.json({
-                    mensaje:"No se encontro el usuario con id"
-                });
-            } else {
-                const {  _password, __v, ...resto} = usuario._doc;
-                res.json(resto);
-            }
-        });
+            .then((usuario) => {
+                if (!usuario) {
+                    return res.json({
+                        mensaje: "No se encontro el usuario con id"
+                    });
+                } else {
+                    const { _password, __v, ...resto } = usuario._doc;
+                    res.json(resto);
+                }
+            });
     } else {
-        res.json({mensaje:"Contraseña incorrecta"});
+        res.json({ mensaje: "Contraseña incorrecta" });
     }
 }
 
@@ -125,32 +127,36 @@ exports.login = async (req, res) => {
 };
 
 exports.registrar = async (req, res) => {
-    const { nombre, apellidos, correo, password, telefono, imagenUrl } = req.body;
-  
+    const { nombre, correo, password, apellido, telefono, imagenUrl, hora, trabajador } = req.body;
+
     Usuario.findOne({ correo }).then((usuario) => {
         if (usuario) {
             return res.json({ mensaje: "Ya existe este correo" })
-        } else if (!nombre || !apellidos || !correo || !password || !telefono || !imagenUrl) {
+        } else if (!nombre || !apellido || !correo || !password || !telefono || !imagenUrl) {
             res.json({ mensaje: "Hay datos por ingresar" });
         } else {
             bcrypt.hash(password, 10, (error, passwordHasheado) => {
-            if (error) res.json({ error });
-            else {
-                const nuevoUsuario = new Usuario({
-                    nombre,
-                    apellidos,
-                    correo,
-                    password: passwordHasheado,
-                    telefono, 
-                    imagenUrl
-                });
-                   nuevoUsuario.save().then(( usuario ) =>  {
-                        res.json({ 
-                            mensaje: "Usuario registrado correctamente", usuario});
+                if (error) res.json({ error });
+                else {
+                    const nuevoUsuario = new Usuario({
+                        nombre,
+                        apellido,
+                        correo,
+                        password: passwordHasheado,
+                        telefono,
+                        imagenUrl,
+                        hora,
+                        trabajador,
+                    });
+                    nuevoUsuario.save().then((usuario) => {
+                        res.json({
+                            mensaje: "Usuario registrado correctamente", usuario
+                        });
                     }).catch((error) => console.error('Error al guardar el usuario', error));
                 }
             });
         }
     });
 }
+
 

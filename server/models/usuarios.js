@@ -9,7 +9,10 @@ const usuarioSchema = new Schema({
     password: {type:String, required: true},
     telefono: {type: String, required: false},
     hora: {type: Date, required: false},
-    imagenUrl: {String, required: false}
+    imagenUrl: {String, required: false},
+    trabajador: Boolean,
+    negocio:{ type: Schema.ObjectId, ref: "Negocio" },
+
 });
 
 module.exports = mongoose.model("Usuario", usuarioSchema);

@@ -1,7 +1,13 @@
 .App {
   text-align: center;
 }
-
+.app-container{
+  padding: 0px !important;
+  margin: 0px !important;
+  align-items: center;
+  justify-content: center;
+  
+}
 .head{
   margin: 0% !important;
   padding: 0% !important;

@@ -10,7 +10,7 @@ const cors = require("cors");
 // database 
 const database = require('./config/database');
 // routers
-const usuariosRouter = require('./routes/usuarios.router');
+const usuariosRouter = require('./routes/usuario.router');
 
 //mongo connection
 database.mongoConnect();
@@ -29,7 +29,7 @@ app.use(cors());
 //router 
 app.use('/users', usuariosRouter);
 //access a users not for other routers because need authentication with token in the client web.
-app.use(auth);
+// app.use(auth);
 
 
 //cath 404 and forward to error handler

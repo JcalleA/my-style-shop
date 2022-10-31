@@ -19,7 +19,7 @@ function App() {
     console.log(user);
     return (
         
-        <Container>
+        <Container className="app-container">
         
             <Barranav></Barranav>
             <Container >
