@@ -2,10 +2,10 @@
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
+    const bearerHeader = req.headers['authorization']
     try {
-        const token = req.headers.authorization.split(" ")[1]
-        const decoded = jwt.verify(token, "__recret__");
-        req.correo = decoded;
+        bearerToken = bearerHeader.split(" ")[1];
+        req.token = bearerToken;
         next();
     } catch (error) {
         res.status(401)

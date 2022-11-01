@@ -10,8 +10,9 @@ const usuarioSchema = new Schema({
     telefono: {type: String, required: false},
     hora: {type: Date, required: false},
     imagenUrl: {String, required: false},
-    trabajador: Boolean,
+    trabajador: {type: Boolean},
     negocio:{ type: Schema.ObjectId, ref: "Negocio" },
+    
 
 });
 

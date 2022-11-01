@@ -72,23 +72,30 @@ exports.remove = (res, req) => {
 }
 
 exports.getUser = async (req, res) => {
-    const { id } = req.params;
-    if (id.length === 24) {
-        Usuario.findById(id)
-            .then((usuario) => {
-                if (!usuario) {
-                    return res.json({
-                        mensaje: "No se encontro el usuario con id"
-                    });
-                } else {
-                    const { _password, __v, ...resto } = usuario._doc;
-                    res.json(resto);
-                }
-            });
-    } else {
-        res.json({ mensaje: "Contraseña incorrecta" });
+    const decoded = jwt.verify(req.token, "__secret__");
+    const id = decoded.id;
+    try {
+        if (id.length === 24) {
+            Usuario.findById(id)
+                .then((usuario) => {
+                    if (!usuario) {
+                        return res.json({
+                            mensaje: "No se encontro el usuario con id"
+                        });
+                    } else {
+                        const { _password, __v, ...resto } = usuario._doc;
+                        res.json(resto);
+                    }
+                });
+        } else {
+            res.json({ mensaje: "Contraseña incorrecta" });
+        }
     }
-}
+        catch (error) {
+        res.json({ mensaje: req.token})}
+        
+    };
+    
 
 exports.login = async (req, res) => {
     const { correo, password } = req.body;
@@ -107,8 +114,8 @@ exports.login = async (req, res) => {
                     nombre,
                 };
 
-                const token = jwt.sign(data, "secreto", {
-                    expiresIn: 86400 /* 24hs */,
+                const token = jwt.sign(data, "__secret__", {
+                    expiresIn: 900 /* 15 min */,
                 });
 
                 res.json({
