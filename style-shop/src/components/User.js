@@ -5,24 +5,23 @@ import axios from "axios";
 const User = () => {
 
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
-    const { id } = useParams();
-    const getToken = localStorage.getItem("token");
-    useEffect(() => {
-        setToken(getToken);
-    });
-
+    const Token = localStorage.getItem("token");
 
     useEffect(() => {
-        if (token) {
+        if (Token) {
+
             axios
-                .get(`http://localhost:3001/user/${id}`)
+                .post(`http://localhost:3001/user/getuser`, {
+                    headers: {
+                        'Authorization': `Beaber ${Token}`
+                    }
+                })
                 .then(res => res.json)
                 .then(res => setUser(res))
                 .then(res => console.log(res))
                 .catch((error) => console.error(error));
         }
-    }, [token]);
+    }, []);
 
 
     return (

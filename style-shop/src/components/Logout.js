@@ -1,12 +1,12 @@
-// import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect, useState } from "react";
 
-// const LogoutButton = () => {
-//     const { logout } = useAuth0();
+import User from "./User";
+const Logout = () => {
 
-//     return (
-    
-    
-//     );
-// };
-// export default LogoutButton;
+
+    return (
+        User.useState(null)
+
+    );
+};
+export default Logout;

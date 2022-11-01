@@ -18,9 +18,9 @@ function App() {
     console.log("Imprimiendo usuario");
     console.log(user);
     return (
-        
+
         <Container className="app-container">
-        
+
             <Barranav></Barranav>
             <Container >
             </Container>

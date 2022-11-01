@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
-import { ifError } from 'assert';
 import './components.css'
 
 const Login = props => {
@@ -38,7 +37,7 @@ const Login = props => {
                     setTimeout(() => {
                         localStorage.setItem("token", data.usuario.token);
                         setMensaje("");
-                        navigate(`/users/${data.usuario.id}`);
+                        navigate(`/home`);
                     }, 1500);
                 }
             })
