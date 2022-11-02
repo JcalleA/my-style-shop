@@ -1,5 +1,4 @@
-const { default: mongoose } = require('mongoose');
-const moongose = require('mongoose');
+const mongoose = require('mongoose');
 
 const host = "localhost";
 const port = "27017";
