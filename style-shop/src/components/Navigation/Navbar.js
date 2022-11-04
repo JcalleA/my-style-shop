@@ -5,22 +5,24 @@ import "../Navigation/Nabvar.css"
 
 
 const Barranav = () => {
-    let [collapsed ] = useState(true);
+    let [collapsed , isCollapsed] = useState(true);
     let {isNavbarCollapsed} = useState(false)
+
+    
     return (
 
         <div className='container-fluid'>
             <div className='header'>
                 <nav className='navbar navbar-expand-lg navbar-ligth MainMenu navbar-responsive'>
                     <Link to='/'>
-                        <img className="img-logo logo navbar-brand" src="https://www.seekpng.com/png/detail/816-8167410_logo-image-barbe-shop-barber-logo-barber-shop.png"
+                        <img className="img-logo" src="https://www.seekpng.com/png/detail/816-8167410_logo-image-barbe-shop-barber-logo-barber-shop.png"
                             alt="Imagen del logo">
                         </img>
                     </Link>
-                    <button onClick={collapsed = !collapsed} className="navbar-toggler" type="button" data-toggle="collapse"
+                    <button onClick={ () => isCollapsed(collapsed)} className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className='pages navbar-nav ml-3'>
                         <div className='home'>
@@ -55,7 +57,7 @@ const Barranav = () => {
                     <div className="end navbar-nav">
                         <div className="login">
                             <Link to="/login">
-                            <a class="nav-link">
+                            <a className="nav-link">
                                 <p>Login</p>
                             </a>
                             </Link>
