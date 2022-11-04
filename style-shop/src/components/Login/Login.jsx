@@ -11,11 +11,12 @@ const Login = () => {
         <>
         <ContainerLogin>
             <ContainerCabecera>
-                <TitleLogin>{ isUser ? "Login empleado" : "Login"}</TitleLogin>
+                <TitleLogin>{ isUser ? "Login User" : "Login"} Login</TitleLogin>
                 <ButtonAdmin onclick={() => setIsUser(!isUser)} bgr >
                     {isUser ? "desactivar modo usuario": "activar modo empleado"}
                 </ButtonAdmin>
             </ContainerCabecera>
+
             <FormLogin isUser={isUser}/>
         </ContainerLogin>
         </>

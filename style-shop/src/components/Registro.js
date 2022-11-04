@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 import './components.css'
 
-const Registro = props => {
+const Registros = props => {
     const [Mensaje, setMensaje] = useState({
         mensaje:"",
     });
@@ -118,4 +118,4 @@ const date = new Date();
     );
 };
 
-export default Registro;
+export default Registros;

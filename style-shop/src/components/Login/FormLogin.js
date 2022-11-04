@@ -4,9 +4,10 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../components.css'
-import { ContainerFormLogin, ParrafoAvisoRegister, TitleLogin } from './login-styles.jsx';
+import { ContainerFormLogin, ParrafoAvisoRegister, ContainerLogin} from './login-styles.jsx';
 import { ContainerInput, Button } from '../../styles/utilStyles';
 import SpinnerSmall from '../Spinner/SpinnerSmall';
+import Container from 'react-bootstrap/esm/Container';
 
 
 const FormLogin = props => {
@@ -54,40 +55,42 @@ const FormLogin = props => {
     };
 
     return (
-        <ContainerFormLogin>
-            <form onSubmit={onSubmitForm}>
-                <ContainerInput>
-                    <label htmlFor='correo'>Correo</label>
-                    <input 
-                      id="correo"
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      value={form.correo}
-                      onChange={onUpdateField}
-                      required />
-                </ContainerInput>
-                <ContainerInput>
-                    <label>Contraseña</label>
-                    <input 
-                    id="password"
-                    type="password"
-                    name="password"
-                    autoComplete="current-password"
-                    value={form.password}
-                    onChange={onUpdateField}
-                    required
-                    />
-                </ContainerInput>
-                <Button disabled={loading} type="submit">
-                    {loading && <SpinnerSmall /> }{" "}
-                    {loading ? "Cargando..." : "Iniciar Sesión"}
-                </Button>
-                <ParrafoAvisoRegister>
-                    No tienes cuenta😢? <Link to="/registro">Registrate aquí!</Link>
-                </ParrafoAvisoRegister>
-            </form>
-        </ContainerFormLogin>
+        <ContainerLogin>
+            <ContainerFormLogin>
+                <form onSubmit={onSubmitForm}>
+                    <ContainerInput>
+                        <label htmlFor='correo'>Correo</label>
+                        <input 
+                        id="correo"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        value={form.correo}
+                        onChange={onUpdateField}
+                        required />
+                    </ContainerInput>
+                    <ContainerInput>
+                        <label>Contraseña</label>
+                        <input 
+                        id="password"
+                        type="password"
+                        name="password"
+                        autoComplete="current-password"
+                        value={form.password}
+                        onChange={onUpdateField}
+                        required
+                        />
+                    </ContainerInput>
+                    <Button disabled={loading} type="submit">
+                        {loading && <SpinnerSmall /> }{" "}
+                        {loading ? "Cargando..." : "Iniciar Sesión"}
+                    </Button>
+                    <ParrafoAvisoRegister>
+                        No tienes cuenta😢? <Link to="/registro">Registrate aquí!</Link>
+                    </ParrafoAvisoRegister>
+                </form>
+            </ContainerFormLogin>
+        </ContainerLogin>
     );
 };
 

@@ -14,6 +14,7 @@ export const ContainerLogin = styled.div`
   position: absolute;
   border-radius: 1rem;
   padding: 1rem;
+  margin-top: 13em;
   width: min(400px, 90%);
   max-height: 100%;
   overflow-y: auto;
@@ -57,4 +58,26 @@ export const ButtonAdmin = styled(Button)`
   top: -10px;
   right: 0;
   color: ${(props) => props.theme.azul};
+`;
+
+export const ContainerLogin2 = styled.div`
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  background-color: white;
+  ${flex("column")};
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 20em;
+  width: min(400px, 90%);
+  max-height: 100%;
+  overflow-y: auto;
+  ${media.laptop} {
+    position: relative;
+    height: min-content;
+  } ;
 `;

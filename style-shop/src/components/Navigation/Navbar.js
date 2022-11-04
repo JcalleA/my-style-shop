@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 //import './components.css'
 import { Link } from 'react-router-dom';
 import "../Navigation/Nabvar.css"
-
+import {Form} from "react-bootstrap"
 
 const Barranav = () => {
     let [collapsed , isCollapsed] = useState(true);
@@ -19,7 +19,7 @@ const Barranav = () => {
                             alt="Imagen del logo">
                         </img>
                     </Link>
-                    <button onClick={ () => isCollapsed(collapsed)} className="navbar-toggler" type="button" data-toggle="collapse"
+                    <button onClick={ () => isCollapsed((collapsed) => !collapsed)} className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -50,7 +50,9 @@ const Barranav = () => {
                     <div className='search navbar-nav' >
                         <div className='collapse navbar-collpase' id='navbarSupportedContent'>
                             <div className='form-inline search'>
-                                <input  type='search' className='form-control' placeholder='search' aria-label='search'></input>
+                                <form className='form-group'>
+                                    <input  type='search' className='form-control' placeholder='search' aria-label='search'></input>
+                                </form>
                             </div>
                         </div>
                     </div>
