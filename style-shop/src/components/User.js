@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useParams } from "react";
+import { useEffect, useState,  } from "react";
 import '../App.css'
 import axios from "axios";
 
@@ -11,7 +11,7 @@ const User = () => {
         if (Token) {
 
             axios
-                .post(`http://localhost:3001/user/getuser`, {
+                .get(`http://localhost:3001/user/getuser`, {
                     headers: {
                         'Authorization': `Beaber ${Token}`
                     }
