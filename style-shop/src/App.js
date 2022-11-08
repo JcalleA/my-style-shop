@@ -21,13 +21,12 @@ function App() {
 
             <Barranav></Barranav>
             <Container></Container>
-            <Routes>
+            <Routes >
                 <Route path="/servicios" element={<Servicios user={auth} />} />
                 <Route path="/registro" element={<Registro />} />
                 <Route exact path="/" element={<Home user={auth} />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
-
         </Container-fluid>
     );
 }

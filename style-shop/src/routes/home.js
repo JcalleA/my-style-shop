@@ -2,7 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 
+
 const Home = ({ user }) => {
+    
     return (
         user ? (
             <div>

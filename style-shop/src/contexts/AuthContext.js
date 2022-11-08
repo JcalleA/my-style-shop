@@ -2,6 +2,7 @@ import React, { createContext, useState} from "react";
 
 const AuthContext = createContext();
 
+
 const user =JSON.parse(localStorage.getItem("user"));
 const initialAuth =()=>{
     const date=new Date();

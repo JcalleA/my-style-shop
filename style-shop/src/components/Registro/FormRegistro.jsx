@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 //import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 import { Button, ContainerInput } from '../../styles/utilStyles';
@@ -11,8 +12,10 @@ import { Link } from 'react-router-dom';
 import SpinnerSmall from '../Spinner/SpinnerSmall';
 
 const FormRegistro = props => {
+
+    const date = new Date().toUTCString();
     const [Mensaje, setMensaje] = useState({
-        mensaje:"",
+        mensaje: "",
     });
     const [form, setForm] = useState({
         nombre: "",
@@ -22,12 +25,12 @@ const FormRegistro = props => {
         password: "",
         imagenUrl: "",
         hora: date,
-        trabajador:false,
+        trabajador: false,
     });
-
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [isUser, setIsUser] = useState(false);
-const date = new Date();
+    
 
     const onUpdateField = e => {
         const nextFormState = {
@@ -41,7 +44,17 @@ const date = new Date();
         e.preventDefault();
         await axios
             .post("http://localhost:3001/users/registrar", form)
-            .then(({ data}) => setMensaje(data));
+            .then((res) => {
+                const { data } = res;
+                setMensaje(data)
+
+                if (data.mensaje === "Usuario registrado correctamente") {
+                    setTimeout(() => {
+                        setMensaje("");
+                        navigate('/login');
+                    }, 1500);
+                }
+            })
 
     };
 
@@ -74,15 +87,15 @@ const date = new Date();
                         />
                     </ContainerInput>
                     <ContainerInput>
-                        <label htmlFor="correo">Correo</label>
+                        <label htmlFor='correo'>Correo</label>
                         <input
                             id="correo"
                             type="email"
-                            name="email"
-                            placeholder="Ingrese su correo..."
-                            value={form.apellidos}
+                            name="correo"
+                            autoComplete="email"
+                            value={form.correo}
                             onChange={onUpdateField}
-                        />
+                            required />
                     </ContainerInput>
                     <ContainerInput>
                         <label htmlFor="telefono">Telefono</label>
@@ -107,13 +120,13 @@ const date = new Date();
                             onChange={onUpdateField}
                         />
                     </ContainerInput>
+
                     <ContainerInput>
                         <label htmlFor="imagenUrl">Imagen</label>
                         <input
                             id="imagenUrl"
                             name="imagenUrl"
-                            type="imagenUrl"
-                            autoComplete="imagenUrl"
+                            type="text"
                             placeholder=" ingrese enlace de imagen..."
                             value={form.imagenUrl}
                             onChange={onUpdateField}
@@ -125,6 +138,7 @@ const date = new Date();
                     </Button>
                     <ParrafoAvisoRegister>
                         Ya tienes cuenta😁? <Link to="/login">Ingresa aquí!</Link>
+                        <h1>{Mensaje.mensaje}</h1>
                     </ParrafoAvisoRegister>
                 </form>
             </ContainerFormRegister>

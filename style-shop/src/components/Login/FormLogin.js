@@ -17,7 +17,9 @@ const FormLogin = props => {
     });
     const navigate = useNavigate();
 
-    const [mensaje, setMensaje] = useState();
+    const [mensaje, setMensaje] = useState({
+        mensaje: "",
+    });
     const [loading, setLoading] = useState(false);
 
     const onUpdateField = e => {
@@ -35,8 +37,7 @@ const FormLogin = props => {
             .then((res) => {
                 const { data } = res;
                 const date= new Date()
-                
-                setMensaje(data.mensaje);
+                setMensaje(data)
                 if (data.mensaje === "Usuario logeado correctamente") {
                     const datos = {
                         usuario: data.usuario,
@@ -45,7 +46,8 @@ const FormLogin = props => {
                     setTimeout(() => {
                         localStorage.setItem("user",JSON.stringify(datos));
                         setMensaje("");
-                        navigate(`/home`);
+                        
+                        navigate('/',{ replace: true });
                     }, 1500);
                 }
             })
@@ -70,7 +72,6 @@ const FormLogin = props => {
                         id="correo"
                         type="email"
                         name="correo"
-                        autoComplete="email"
                         value={form.correo}
                         onChange={onUpdateField}
                         required />
@@ -81,7 +82,6 @@ const FormLogin = props => {
                         id="password"
                         type="password"
                         name="password"
-                        autoComplete="current-password"
                         value={form.password}
                         onChange={onUpdateField}
                         required
@@ -93,6 +93,7 @@ const FormLogin = props => {
                     </Button>
                     <ParrafoAvisoRegister>
                         No tienes cuenta😢? <Link to="/registro">Registrate aquí!</Link>
+                        <h1 >{mensaje.mensaje}</h1>
                     </ParrafoAvisoRegister>
                 </form>
             </ContainerFormLogin>
