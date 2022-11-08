@@ -34,10 +34,16 @@ const FormLogin = props => {
             .post("http://localhost:3001/users/login", form)
             .then((res) => {
                 const { data } = res;
+                const date= new Date()
+                
                 setMensaje(data.mensaje);
                 if (data.mensaje === "Usuario logeado correctamente") {
+                    const datos = {
+                        usuario: data.usuario,
+                        expires: date.getTime()+1200000
+                    }
                     setTimeout(() => {
-                        localStorage.setItem("token", data.usuario.token);
+                        localStorage.setItem("user",JSON.stringify(datos));
                         setMensaje("");
                         navigate(`/home`);
                     }, 1500);
@@ -63,7 +69,7 @@ const FormLogin = props => {
                         <input 
                         id="correo"
                         type="email"
-                        name="email"
+                        name="correo"
                         autoComplete="email"
                         value={form.correo}
                         onChange={onUpdateField}

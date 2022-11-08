@@ -38,7 +38,7 @@ exports.update = () => {
     if (usuario.$isEmpty)
         console.error("Campos vacios");
 
-    usuario.findByIdUpdate(req.params.id, { $set: usuario }, (err) => {
+    Usuario.findByIdAndUpdate(req.params.id, { $set: usuario }, (err) => {
         if (err) {
             console.error("Error:", err);
             response.exito = false;

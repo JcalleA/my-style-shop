@@ -6,28 +6,21 @@ const User = () => {
 
     const [user, setUser] = useState(null);
     const Token = localStorage.getItem("token");
+    console.log(Token);
+    console.log(user);
 
     useEffect(() => {
-        if (Token) {
-
+        const headers={headers: {
+            'Authorization': `Bearer ${Token}`}}
             axios
-                .get(`http://localhost:3001/user/getuser`, {
-                    headers: {
-                        'Authorization': `Beaber ${Token}`
-                    }
+                .get("http://localhost:3001/users/getuser",headers)
+                .then((res) => {
+                    const { data } = res;
+                    setUser(data)
                 })
-                .then(res => res.json)
-                .then(res => setUser(res))
-                .then(res => console.log(res))
-                .catch((error) => console.error(error));
-        }
-    }, []);
-
-
-    return (
-        user
-
-    )
+                .catch((error) => console.error(error))
+                .catch(localStorage.removeItem("user"))
+    }, [Token]);
 
 };
 export default User;

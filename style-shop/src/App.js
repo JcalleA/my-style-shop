@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useParams } from "react";
+import React, { useContext } from "react";
 import './App.css';
 import { Route, Routes } from "react-router-dom";
 import Barranav from './components/Navigation/Navbar';
@@ -9,26 +9,22 @@ import Servicios from './routes/servicios';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login/FormLogin';
 import Registro from "./components/Registro/Registro";
-import User from "./components/User";
-
+import AuthContext from "./contexts/AuthContext";
 
 
 function App() {
-    const user = User.user;
-    console.log("Imprimiendo usuario");
-   // console.log(user);
-    return (
 
+    const { auth } = useContext(AuthContext);
+
+    return (
         <Container-fluid className="app-container">
 
             <Barranav></Barranav>
             <Container></Container>
             <Routes>
-                <Route element={<ProtectedRoute user={user} />}>
-                    <Route path="/servicios" element={<Servicios />} />
-                </Route>
+                <Route path="/servicios" element={<Servicios user={auth} />} />
                 <Route path="/registro" element={<Registro />} />
-                <Route exact path="/" element={<Home user={user} />} />
+                <Route exact path="/" element={<Home user={auth} />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
 
