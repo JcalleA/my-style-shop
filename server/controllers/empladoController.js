@@ -1,9 +1,9 @@
-const { response } = requiere("express");
+const { response } = require("express");
 const { generarToken } = require("../helpers/jwt");
 const bcrypt = require("bcrypt");
 
-const Empleado = requiere("../models/empleado");
-const Usuario = requiere("../models/usuarios");
+const Empleado = require("../models/empleado");
+const Usuario = require("../models/usuarios");
 
 exports.crearEmpleado = async (req, res = response) => {
     const { email, password } = req.body;

@@ -1,9 +1,9 @@
-const expires = require("express");
+const express = require("express");
 const { check } = require("express-validator");
 const empladoController = require("../controllers/empladoController");
 const middlewares = require("../middlewares/validar-campos");
 
-const router = expires.Router();
+const router = express.Router();
 
 //crear empleados
 router.post('/new', () => {
@@ -39,12 +39,14 @@ router.post('/', () => {
     middlewares.validarCampos,
     empladoController.loginEmpleado
 });
+
 //update empleado
 router.put('/:id', () => {
     [check(["password", "email"], "estos campos no se pueden modificar").isEmpty()],
     middlewares.validarCampos,
     empladoController.updateEmpleado
 });
+
 //delete cortes
 router.put('/deleteCita/:id', () => {
     [
