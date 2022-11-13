@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', () => {
     [
-        check("password", "El empleado debe de ser de 6 caracteres").isLength({
+        check("password", "El password debe de ser de 6 caracteres").isLength({
             min: 6
         }),
     ],
