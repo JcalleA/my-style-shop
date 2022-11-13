@@ -13,6 +13,8 @@ const database = require('./config/database');
 const usuariosRouter = require('./routes/usuario.router');
 const negociosRouter = require('./routes/negocio.router');
 const adminRouter = require('./routes/admin.router');
+const empleadoRouter = require('./routes/empleadoRouter');
+
 //mongo connection
 database.mongoConnect();
 
@@ -29,7 +31,7 @@ app.use(cors());
 app.use('api/users', usuariosRouter);
 app.use('api/negocio', negociosRouter);
 app.use('api/admin', adminRouter);
-
+app.use('api/empleado', empleadoRouter);
 
 
 //cath 404 and forward to error handler
