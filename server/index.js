@@ -12,7 +12,7 @@ const database = require('./config/database');
 // routers
 const usuariosRouter = require('./routes/usuario.router');
 const negociosRouter = require('./routes/negocio.router');
-
+const adminRouter = require('./routes/admin.router');
 //mongo connection
 database.mongoConnect();
 
@@ -26,9 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 //router 
-app.use('/users', usuariosRouter);
-app.use('/negocio', negociosRouter);
-
+app.use('api/users', usuariosRouter);
+app.use('api/negocio', negociosRouter);
+app.use('api/admin', adminRouter);
 
 
 
@@ -49,31 +49,4 @@ app.use((err, req, res,) => {
 }); 
 
 module.exports = app;
-
-
-// BD Conection
-//const url = "mongodb://localhost:27017/mydb";
-//mongoose
-//    .connect(url)
-//    .then(console.log("conectado a la bd"))
-//    .catch((error) => console.error(error));
-
-
-//controller
-/*app.get('/:id',getUser)
-app.post('/registrar',registrar)
-app.post('/login',login)*/
-
-//const Usuarios = require("./models/usuarios");
-
-// app.get("/login", (req, res) => {
-//     Usuarios
-//     .find(req)
-//     .then(allUsuarios => res.json(allUsuarios));
-// });
-
-
-/*app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto: ${PORT}`);
-});*/
 
