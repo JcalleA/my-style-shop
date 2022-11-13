@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const usuarioSchema = new Schema({
     
     nombre: {type:String, required: true},
-    apellido: String,
+    apellidos: {type:String, required: true},
     correo: {type:String, required: true, unique: true}, 
     password: {type:String, required: true},
-    telefono: {type: String, required: false},
-    hora: {type: Date, required: false},
-    imagenUrl: {String, required: false},
+    telefono: {type: String, required: true},
+    hora: {type: Date, required: true},
+    imagenUrl: {type: String, required: true},
     trabajador: {type: Boolean},
     negocio:{ type: Schema.ObjectId, ref: "Negocio" },
     

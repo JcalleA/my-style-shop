@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
@@ -37,6 +37,7 @@ const Login = props => {
                     setTimeout(() => {
                         localStorage.setItem("token", data.usuario.token);
                         setMensaje("");
+                        window.location.reload()
                         navigate(`/home`);
                     }, 1500);
                 }
@@ -82,10 +83,10 @@ const Login = props => {
                 </Button>
                 <h1 className='h1'>Aun no tienes cuenta?</h1>
                 <Link to="/registro">
-                        <Button className='form-button' variant='dark'>
-                            Registrarse
-                        </Button>
-                    </Link>
+                    <Button className='form-button' variant='dark'>
+                        Registrarse
+                    </Button>
+                </Link>
                 {mensaje && <h1 className='h1'>{mensaje}</h1>}
             </Form>
         </Container>

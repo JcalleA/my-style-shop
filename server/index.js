@@ -11,6 +11,7 @@ const cors = require("cors");
 const database = require('./config/database');
 // routers
 const usuariosRouter = require('./routes/usuario.router');
+const negociosRouter = require('./routes/negocio.router');
 
 //mongo connection
 database.mongoConnect();
@@ -26,6 +27,7 @@ app.use(cors());
 
 //router 
 app.use('/users', usuariosRouter);
+app.use('/negocio', negociosRouter);
 
 
 

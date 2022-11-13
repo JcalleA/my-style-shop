@@ -38,7 +38,7 @@ exports.update = () => {
     if (usuario.$isEmpty)
         console.error("Campos vacios");
 
-    usuario.findByIdUpdate(req.params.id, { $set: usuario }, (err) => {
+    Usuario.findByIdAndUpdate(req.params.id, { $set: usuario }, (err) => {
         if (err) {
             console.error("Error:", err);
             response.exito = false;
@@ -134,12 +134,12 @@ exports.login = async (req, res) => {
 };
 
 exports.registrar = async (req, res) => {
-    const { nombre, correo, password, apellido, telefono, imagenUrl, hora, trabajador } = req.body;
+    const { nombre, correo, password, apellidos, telefono, imagenUrl, hora, trabajador } = req.body;
 
     Usuario.findOne({ correo }).then((usuario) => {
         if (usuario) {
             return res.json({ mensaje: "Ya existe este correo" })
-        } else if (!nombre || !apellido || !correo || !password || !telefono || !imagenUrl) {
+        } else if (!nombre || !apellidos || !correo || !password || !telefono || !imagenUrl) {
             res.json({ mensaje: "Hay datos por ingresar" });
         } else {
             bcrypt.hash(password, 10, (error, passwordHasheado) => {
@@ -147,7 +147,7 @@ exports.registrar = async (req, res) => {
                 else {
                     const nuevoUsuario = new Usuario({
                         nombre,
-                        apellido,
+                        apellidos,
                         correo,
                         password: passwordHasheado,
                         telefono,
