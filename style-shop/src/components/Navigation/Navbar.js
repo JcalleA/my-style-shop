@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 //import './components.css'
 import { Link, useNavigate } from 'react-router-dom';
 import "../Navigation/Nabvar.css"
 // ICONS
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-
+import AuthContext from '../../contexts/AuthContext';
 
 const Barranav = () => {
+    const { auth } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
     const [size, setSize] = useState({
@@ -51,26 +53,41 @@ const Barranav = () => {
                     ${menuOpen && size.width < 768 ? `${"isMenu"}` : ""} 
                 }`}
                     >
+                        {auth ?
+                            <ul>
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/servicios">Servicios</Link>
+                                </li>
+                                <li>
+                                    <Link to="/reserva">Reserva</Link>
+                                </li>
+                                <li>
+                                    <Link to="/negocio">Negocio</Link>
+                                </li>
+                                <Link to="/logout">
+                            <button className="btn btn__login">Logout</button>
+                        </Link>
+                            </ul>
+                            :
+                            <ul>
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <Link to="/registro">
+                                    <button className="btn">Registro</button>
+                                </Link>
+                                <Link to="/login">
+                                    <button className="btn btn__login">Login</button>
+                                </Link>
+                            </ul>
+                        }
                         <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/servicios">Servicios</Link>
-                            </li>
-                            <li>
-                                <Link to="/reserva">Reserva</Link>
-                            </li>
                             <li>
                                 <Link to="/about">About</Link>
                             </li>
-
-                            <Link to="/registro">
-                                <button className="btn">Registro</button>
-                            </Link>
-                            <Link to="/login">
-                                <button className="btn btn__login">Login</button>
-                            </Link>
                         </ul>
                     </nav>
                     <div className="header__content__toggle">

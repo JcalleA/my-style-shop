@@ -10,7 +10,7 @@ router.post('/registrar', negocioController.registrar);
 
 // //get
 // // router.get('/getUsers', usuarioController.find);
-// router.get('/getuser', auth , negocioController.getUser);
+router.get('/getnegocio', auth , negocioController.getNegocio);
 // //put
 // router.put('/update', negocioController.update);
 // //delete

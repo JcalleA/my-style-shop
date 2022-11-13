@@ -1,5 +1,6 @@
 const Negocio = require("../models/negocio");
 const Usuario = require("../models/usuarios");
+const jwt = require("jsonwebtoken");
 
 exports.registrar = async (req, res) => {
     const { nombre, ciudad, correo, telefono, id } = req.body;
@@ -39,3 +40,35 @@ exports.registrar = async (req, res) => {
         }
     });
 }
+exports.getNegocio = async (req, res) => {
+    const decoded = jwt.verify(req.token, "__secret__");
+    const id = decoded.id;
+    try {
+        if (id.length === 24) {
+            Usuario.findById(id)
+                .then((usuario) => {
+                    if (!usuario) {
+                        return res.json({
+                            mensaje: "No se encontro el usuario con id"
+                        });
+                    } else {
+                        Negocio.findById(usuario.negocio)
+                        .then((negocio)=>{
+                            if (!negocio){
+                                return res.json({
+                                    mensaje: "No se encontro Negocio"});
+                            } else {
+                                res.json(negocio)
+                            }
+                        })
+                        
+                    }
+                });
+        } else {
+            res.json({ mensaje: "Contraseña incorrecta" });
+        }
+    }
+        catch (error) {
+        res.json({ mensaje: req.token})}
+        
+    };

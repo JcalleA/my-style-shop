@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useContext, use} from "react";
 import { Button } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
-
-const Home = ({ user }) => {
+const Home = () => {
     
+    const { auth } = useContext(AuthContext);
     return (
-        user ? (
+        auth ? (
             <div>
-                <h1> Welcome {user.usuario.nombre}</h1>
+                <h1> Welcome {auth.usuario.nombre}</h1>
                 <button onClick={() => Navigate("/logout")} > Sign Out</button>
             </div>
         ) : (

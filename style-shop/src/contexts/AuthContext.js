@@ -16,13 +16,10 @@ const initialAuth =()=>{
     }return null
 } 
 const AuthProvider = ({children}) =>{
+
     const [auth,setAuth]=useState(initialAuth());
     const handleAuth =(e)=>{
-        if (auth){
-            setAuth(null);
-        }else{
             setAuth(user)
-        }
     };
 
     const data ={auth,handleAuth};

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useContext, useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 //import Button from 'react-bootstrap/esm/Button';
@@ -10,27 +9,25 @@ import { ContainerFormRegister, MessageError } from './styles';
 import { Link } from 'react-router-dom';
 //import './components.css'
 import SpinnerSmall from '../Spinner/SpinnerSmall';
+import AuthContext from '../../contexts/AuthContext';
 
-const FormRegistro = props => {
+const FormRegistroNegocio = props => {
 
-    const date = new Date().toUTCString();
+    const { auth } = useContext(AuthContext);
+
     const [Mensaje, setMensaje] = useState({
         mensaje: "",
     });
     const [form, setForm] = useState({
         nombre: "",
-        apellidos: "",
+        ciudad: "",
         correo: "",
         telefono: "",
-        password: "",
-        imagenUrl: "",
-        hora: date,
-        trabajador: false,
+        id: auth.usuario.id
     });
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [isUser, setIsUser] = useState(false);
-    
+
 
     const onUpdateField = e => {
         const nextFormState = {
@@ -43,15 +40,15 @@ const FormRegistro = props => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/users/registrar", form)
+            .post("http://localhost:3001/negocio/registrar", form)
             .then((res) => {
                 const { data } = res;
                 setMensaje(data)
 
-                if (data.mensaje === "Usuario registrado correctamente") {
+                if (data.mensaje === "Negocio registrado correctamente") {
                     setTimeout(() => {
                         setMensaje("");
-                        navigate('/login');
+                        navigate('/negocio');
                     }, 1500);
                 }
             })
@@ -75,14 +72,13 @@ const FormRegistro = props => {
                         />
                     </ContainerInput>
                     <ContainerInput>
-                        <label htmlFor="apellidos">Apellidos</label>
+                        <label htmlFor="ciudad">Ciudad</label>
                         <input
-                            id="apellidos"
+                            id="ciudad"
                             type="text"
-                            name="apellidos"
-                            placeholder="Ingrese sus apellidos..."
-                            autoComplete="given-name"
-                            value={form.apellidos}
+                            name="ciudad"
+                            placeholder="Ingrese sus ciudad..."
+                            value={form.ciudad}
                             onChange={onUpdateField}
                         />
                     </ContainerInput>
@@ -108,36 +104,11 @@ const FormRegistro = props => {
                             onChange={onUpdateField}
                         />
                     </ContainerInput>
-                    <ContainerInput>
-                        <label htmlFor="password">Contraseña</label>
-                        <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            autoComplete="new-password"
-                            placeholder="Ingrese su contraseña..."
-                            value={form.password}
-                            onChange={onUpdateField}
-                        />
-                    </ContainerInput>
-
-                    <ContainerInput>
-                        <label htmlFor="imagenUrl">Imagen</label>
-                        <input
-                            id="imagenUrl"
-                            name="imagenUrl"
-                            type="text"
-                            placeholder=" ingrese enlace de imagen..."
-                            value={form.imagenUrl}
-                            onChange={onUpdateField}
-                        />
-                    </ContainerInput>
                     <Button disabled={loading} type="submit">
                         {loading && <SpinnerSmall />}{" "}
-                        {isUser ? "Registrar usuario" : "Registrar"}
+                        Registrar
                     </Button>
                     <ParrafoAvisoRegister>
-                        Ya tienes cuenta😁? <Link to="/login">Ingresa aquí!</Link>
                         <h1>{Mensaje.mensaje}</h1>
                     </ParrafoAvisoRegister>
                 </form>
@@ -146,4 +117,4 @@ const FormRegistro = props => {
     );
 };
 
-export default FormRegistro;
+export default FormRegistroNegocio;
