@@ -7,7 +7,6 @@ import '../components.css'
 import { ContainerFormLogin, ParrafoAvisoRegister, ContainerLogin} from './login-styles.jsx';
 import { ContainerInput, Button } from '../../styles/utilStyles';
 import SpinnerSmall from '../Spinner/SpinnerSmall';
-import Container from 'react-bootstrap/esm/Container';
 
 
 const FormLogin = props => {
@@ -63,7 +62,7 @@ const FormLogin = props => {
                         <input 
                         id="correo"
                         type="email"
-                        name="email"
+                        name="correo"
                         autoComplete="email"
                         value={form.correo}
                         onChange={onUpdateField}
