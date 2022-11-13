@@ -8,7 +8,7 @@ export const ContainerLogin = styled.div`
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   background-color: white;
   ${flex("column")};
-  top: 50%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
@@ -66,7 +66,7 @@ export const ContainerLogin2 = styled.div`
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   background-color: white;
   ${flex("column")};
-  top: 50%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
