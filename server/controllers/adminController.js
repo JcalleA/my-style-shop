@@ -1,4 +1,4 @@
-const { response } = requiere("express");
+const { response } = require("express");
 
 exports.validaAdmin = (req, res = response) => {
     const { password } = req.body;
