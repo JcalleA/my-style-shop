@@ -166,4 +166,33 @@ exports.registrar = async (req, res) => {
     });
 }
 
-
+exports.actualizarUsuarioNombre = async (req, res = response) => {
+    const usuarioId = req.params.id;
+    try {
+        const usuario = await Usuario.findById(usuarioId);
+        const id = req.id;
+        if (!usuario) {
+            return res.status(404).json({
+                ok: false,
+                msg: "No existe el usuario con este id",
+            });
+        }
+        if (usuario.id !== id) {
+            return res.status(404).json({
+                ok: false,
+                msg: "Este usuario no tiene permitido hacer cambios de esta informacion",
+            });
+        }
+        const nuevoUsuario = {...req.body };
+        await Usuario.findByIdAndUpdate(id, nuevoUsuario, {
+            new: true,
+        });
+        res.json({
+            ok: true,
+            newNombre: req.body.nombre,
+            id,
+        });
+    } catch (error) {
+        console.error(error);
+    }
+};
