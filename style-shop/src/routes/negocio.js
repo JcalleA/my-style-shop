@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../contexts/AuthContext";
-import FormRegistroNegocio from "../components/RegistroNegocio/FormRegistroNefocio";
+import FormRegistroNegocio from "../components/RegistroNegocio/FormRegistroNegocio";
 
 const Negocio = () => {
 
