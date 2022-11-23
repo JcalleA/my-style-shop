@@ -23,7 +23,8 @@ const FormRegistroNegocio = props => {
         ciudad: "",
         correo: "",
         telefono: "",
-        id: auth.usuario.id
+        id: auth.usuario.id,
+        imagenUrl:"",
     });
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ const FormRegistroNegocio = props => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/negocio/registrar", form)
+            .post("http://localhost:3001/api/negocio/registrar", form)
             .then((res) => {
                 const { data } = res;
                 setMensaje(data)
@@ -101,6 +102,17 @@ const FormRegistroNegocio = props => {
                             name="telefono"
                             placeholder="Ingrese su telefono..."
                             value={form.telefono}
+                            onChange={onUpdateField}
+                        />
+                    </ContainerInput>
+                    <ContainerInput>
+                        <label htmlFor="imagenUrl">Imagen</label>
+                        <input
+                            id="imagenUrl"
+                            name="imagenUrl"
+                            type="text"
+                            placeholder="enlace de imagen del negocio..."
+                            value={form.imagenUrl}
                             onChange={onUpdateField}
                         />
                     </ContainerInput>

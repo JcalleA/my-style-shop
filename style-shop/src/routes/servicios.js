@@ -16,7 +16,7 @@ const Servicios = () => {
             
 
             axios
-                .get("http://localhost:3001/users/getuser", {
+                .get("http://localhost:3001/api/users/getuser", {
                     headers: {
                         'Authorization': `Bearer ${Token}`
                     }
