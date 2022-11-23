@@ -26,7 +26,7 @@ const date = new Date();
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/users/registrarnegocio", form)
+            .post("http://localhost:3001/api/users/registrarnegocio", form)
             .then(({ data }) => console.log(data));
 
     };

@@ -13,7 +13,7 @@ const User = () => {
         const headers={headers: {
             'Authorization': `Bearer ${Token}`}}
             axios
-                .get("http://localhost:3001/users/getuser",headers)
+                .get("http://localhost:3001/api/users/getuser",headers)
                 .then((res) => {
                     const { data } = res;
                     setUser(data)

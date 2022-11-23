@@ -6,6 +6,7 @@ const negocioSchema = new Schema({
     telefono: {type: String, required: false},
     correo: {type:String, required: true, unique: true},
     nombre: String,
+    imagenUrl: {type: String, required: true},
     servicios: { type: Schema.ObjectId, ref: "Servicio" }
 });
 

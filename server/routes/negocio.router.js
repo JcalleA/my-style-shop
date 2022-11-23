@@ -11,6 +11,7 @@ router.post('/registrar', negocioController.registrar);
 // //get
 // // router.get('/getUsers', usuarioController.find);
 router.get('/getnegocio', auth , negocioController.getNegocio);
+router.get('/getnegocios', negocioController.getNegocios);
 // //put
 // router.put('/update', negocioController.update);
 // //delete
