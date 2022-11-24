@@ -15,7 +15,7 @@ const usuariosRouter = require('./routes/usuario.router');
 const negociosRouter = require('./routes/negocio.router');
 const adminRouter = require('./routes/admin.router');
 const empleadoRouter = require('./routes/empleadoRouter');
-
+const citasRouter = require('./routes/cita.router');
 //mongo connection
 database.mongoConnect();
 
@@ -35,7 +35,7 @@ app.use('/api/users', usuariosRouter);
 app.use('/api/negocio', negociosRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/empleados', empleadoRouter);
-
+app.use('/api/cita', citasRouter);
 
 //cath 404 and forward to error handler
 app.use((req, res, next) => {

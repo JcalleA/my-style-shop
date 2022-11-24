@@ -7,6 +7,10 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import AuthContext from '../../contexts/AuthContext';
 
+import Button from 'react-bootstrap/Button';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
+
 const Barranav = () => {
     const { auth } = useContext(AuthContext);
 
@@ -62,7 +66,10 @@ const Barranav = () => {
                                     <Link to="/servicios">Servicios</Link>
                                 </li>
                                 <li>
-                                    <Link to="/reserva">Reserva</Link>
+                                    <Link to="/citas">Reserva</Link>
+                                </li>
+                                <li>
+                                    <Link to="/NuevaCita">Nueva Cita</Link>
                                 </li>
                                 <li>
                                     <Link to="/negocio">Negocio</Link>

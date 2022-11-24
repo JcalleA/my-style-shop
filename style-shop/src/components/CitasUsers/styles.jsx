@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 import { flex } from "../../styles/utilStyles";
-import { ContainerFormLogin } from "../Login/Login";
+import { ContainerFormLogin } from "../Login/login-styles";
 
 export const ContainerNewCitaUsers = styled.main`
   flex-grow: 1;

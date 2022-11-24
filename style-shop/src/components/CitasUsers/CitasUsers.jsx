@@ -1,11 +1,12 @@
 import React from "react";
-import ListOfCitas from "./ListaDeCitas";
+import FormCita from "./FormCita";
+import NuevaCita from "./NuevaCita";
 import { ContainerCitasUsers } from "./styles";
 
 const CitasUsers = () => {
     return (
         <ContainerCitasUsers>
-            <ListOfCitas />
+            <NuevaCita/>
         </ContainerCitasUsers>
     );
 };

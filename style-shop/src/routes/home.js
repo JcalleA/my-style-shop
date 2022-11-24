@@ -14,7 +14,9 @@ const Home = () => {
                 <button onClick={() => Navigate("/logout")} > Sign Out</button>
                 <h1> Lista De Negocios </h1>
                 <Negocios></Negocios>
+
             </div>
+            
 
         ) : (
             <div>
