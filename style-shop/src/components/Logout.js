@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
-import User from "./User";
 const Logout = () => {
-
+    localStorage.removeItem("user")
 
     return (
-        User.useState(null)
+        <Navigate to="/" />
 
     );
 };

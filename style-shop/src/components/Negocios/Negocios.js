@@ -23,7 +23,7 @@ const Negocios = () => {
     return (
         <div className="row">
             {negocios.map((negocio)=>{
-                return <Negocio key={negocio.id} nombre={negocio.nombre} imagenUrl={negocio.imagenUrl} ciudad={negocio.ciudad} telefono={negocio.telefono}></Negocio>
+                return <Negocio key={negocio._id} id={negocio._id} nombre={negocio.nombre} imagenUrl={negocio.imagenUrl} ciudad={negocio.ciudad} telefono={negocio.telefono}></Negocio>
             })}
         </div>
     )

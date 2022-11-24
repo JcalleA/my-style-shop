@@ -81,3 +81,9 @@ exports.getNegocios = (req, res) => {
         res.json(negocios)
     }, console.error("error al consultar los negocios"));
 }
+exports.removerNegocio = async (res, req) => {
+    const _id= req._id
+    Negocio.findByIdAndDelete({_id:_id})
+    .then(res => res.json)
+    .catch(error => error.json)
+}

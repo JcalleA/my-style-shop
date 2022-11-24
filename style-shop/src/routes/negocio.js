@@ -9,7 +9,7 @@ const Negocio = () => {
     const { auth } = useContext(AuthContext);
 
     if (auth) {
-        
+
         const Token = auth.usuario.token
         const [negocio, setNegocio] = useState([])
         useEffect(() => {
@@ -21,55 +21,40 @@ const Negocio = () => {
                 })
                 .then((res) => {
                     const { data } = res;
-                    setNegocio(data)
+                    if (data.mensaje === "No se encontro Negocio") {
+                        setNegocio(null)
+                    } else {
+                        setNegocio(data)
+                    }
+
                 })
                 .catch((error) => console.log(error))
-                .catch((res) => {
-                    const { datos } = res;
-                    setNegocio(datos)
-                })
         }, []);
 
         return (
-            auth ? (
-                
-                <div>
-                    <div className="card" style={{width: '18rem'}}>
-                        {/* <img className="card-img-top" src={servicios.imagenUrl} alt="Card image cap"></img> */}
-                        <div className="card-body">
-                            <h5 className="card-title">Nombre Negocio {negocio.nombre}</h5>
-                            <h5 className="card-title">Direccion {negocio.ciudad}</h5>
-                            <h5 className="card-title">Telefono Negocio {negocio.telefono}</h5>
-
-                            <button type="button" className="btn btn-primary">Primary</button>
-                            <button onClick={() => Navigate("/logout")} > Sign Out</button>
-
-                            <FormRegistroNegocio></FormRegistroNegocio>
-                            
+            negocio ? (
+                <div className="row">
+                    
+                            <div className="card bg-dark border-white text-white">
+                                <img height="250" width="auto" src={negocio.imagenUrl} className="card-img" />
+                                <div className="card-img-overlay">
+                                    <h5 className="card-title">{negocio.nombre}</h5>
+                                    <p className="card-text auto pe-2">{negocio.ciudad}</p>
+                                    <p className="card-text auto pe-2">{negocio.telefono}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    
                 
 
             ) : (
-                <div>
-                    <h1>Welcome Tienes Cuenta Logueate </h1>
-                    <button onClick={() => Navigate("/login")}>Sign In</button>
+                <div >
+                    <h1>No tienes negocio Registra Uno</h1>
+                    <FormRegistroNegocio></FormRegistroNegocio>
                 </div>
             )
         )
-    } else {
-        return (
-            auth ? (
-                <div>
-                    <h1> Welcome {auth.usuario.id}</h1>
-                    <button onClick={() => Navigate("/logout")} > Sign Out</button>
-                </div>
-            ) : (
-                <Navigate to="/" />
-            )
-            
-        )
+
     }
 };
 
