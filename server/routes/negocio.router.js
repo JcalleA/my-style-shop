@@ -6,6 +6,8 @@ const auth = require('../auth/auth');
 //post
 router.post('/registrar', negocioController.registrar);
 
+
+
 // router.post('/login', negocioController.login);
 
 // //get
@@ -14,6 +16,7 @@ router.get('/getnegocio', auth , negocioController.getNegocio);
 router.get('/getnegocios', negocioController.getNegocios);
 // //put
 // router.put('/update', negocioController.update);
+router.put('/remove', negocioController.removerNegocio);
 // //delete
 // router.delete('/deleteUser/:id', negocioController.remove);
 
