@@ -31,10 +31,10 @@ app.use(express.json({ extended: true }));
 
 //router 
 app.get("/api/refrescar", authToken, renovationToken);
-app.use('api/users', usuariosRouter);
-app.use('api/negocio', negociosRouter);
-app.use('api/admin', adminRouter);
-app.use('api/empleados', empleadoRouter);
+app.use('/api/users', usuariosRouter);
+app.use('/api/negocio', negociosRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/empleados', empleadoRouter);
 
 
 //cath 404 and forward to error handler

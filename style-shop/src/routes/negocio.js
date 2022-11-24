@@ -14,7 +14,7 @@ const Negocio = () => {
         const [negocio, setNegocio] = useState([])
         useEffect(() => {
             axios
-                .get("http://localhost:3001/negocio/getnegocio", {
+                .get("http://localhost:3001/api/negocio/getnegocio", {
                     headers: {
                         'Authorization': `Bearer ${Token}`
                     }
@@ -32,6 +32,7 @@ const Negocio = () => {
 
         return (
             auth ? (
+                
                 <div>
                     <div className="card" style={{width: '18rem'}}>
                         {/* <img className="card-img-top" src={servicios.imagenUrl} alt="Card image cap"></img> */}
@@ -44,9 +45,11 @@ const Negocio = () => {
                             <button onClick={() => Navigate("/logout")} > Sign Out</button>
 
                             <FormRegistroNegocio></FormRegistroNegocio>
+                            
                         </div>
                     </div>
                 </div>
+                
 
             ) : (
                 <div>

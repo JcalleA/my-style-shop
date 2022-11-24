@@ -3,7 +3,7 @@ const Usuario = require("../models/usuarios");
 const jwt = require("jsonwebtoken");
 
 exports.registrar = async (req, res) => {
-    const { nombre, ciudad, correo, telefono, id } = req.body;
+    const { nombre, ciudad, correo, telefono, id, imagenUrl } = req.body;
 
     Negocio.findOne({ correo }).then((negocio) => {
         if (negocio) {
@@ -16,6 +16,7 @@ exports.registrar = async (req, res) => {
                 ciudad,
                 correo,
                 telefono,
+                imagenUrl,
             });
             nuevoNegocio.save().then((negocio) => {
                 const datos = negocio
@@ -53,22 +54,30 @@ exports.getNegocio = async (req, res) => {
                         });
                     } else {
                         Negocio.findById(usuario.negocio)
-                        .then((negocio)=>{
-                            if (!negocio){
-                                return res.json({
-                                    mensaje: "No se encontro Negocio"});
-                            } else {
-                                res.json(negocio)
-                            }
-                        })
-                        
+                            .then((negocio) => {
+                                if (!negocio) {
+                                    return res.json({
+                                        mensaje: "No se encontro Negocio"
+                                    });
+                                } else {
+                                    res.json(negocio)
+                                }
+                            })
+
                     }
                 });
         } else {
             res.json({ mensaje: "Contraseña incorrecta" });
         }
     }
-        catch (error) {
-        res.json({ mensaje: req.token})}
-        
-    };
+    catch (error) {
+        res.json({ mensaje: req.token })
+    }
+
+};
+
+exports.getNegocios = (req, res) => {
+    Negocio.find((err, negocios) => {
+        res.json(negocios)
+    }, console.error("error al consultar los negocios"));
+}
