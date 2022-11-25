@@ -3,11 +3,17 @@ import React from 'react';
 import Swal from 'sweetalert2';
 
 const Negocio = (props) => {
+    const form = {
+        correo : props.correo
+
+    }
 
     const eliminarNegocio=async (e)=>{ 
+        console.log(props.correo);
+        console.log(form);
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/api/negocio/remove", {id:props.id})
+            .delete("http://localhost:3001/api/negocio/remove",form)
             .then((res) => {
                 const { data } = res;
                 Swal.fire(data.mensaje)})

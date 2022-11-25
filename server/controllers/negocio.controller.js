@@ -1,6 +1,10 @@
 const Negocio = require("../models/negocio");
 const Usuario = require("../models/usuarios");
 const jwt = require("jsonwebtoken");
+const parseId = (id) => {
+    return mongoose.Types.ObjectId(id)
+}
+
 
 exports.registrar = async (req, res) => {
     const { nombre, ciudad, correo, telefono, id, imagenUrl } = req.body;
@@ -81,9 +85,14 @@ exports.getNegocios = (req, res) => {
         res.json(negocios)
     }, console.error("error al consultar los negocios"));
 }
-exports.removerNegocio = async (res, req) => {
-    const _id= req._id
-    Negocio.findByIdAndDelete({_id:_id})
-    .then(res => res.json)
-    .catch(error => error.json)
+exports.removerNegocio = async (req, res) => {
+    const { nombre, ciudad, correo, telefono, id, imagenUrl } = req.body;
+
+    Negocio.findOneAndDelete( correo ).then((negocio) => {
+        if (negocio) {
+            return res.json({ mensaje: "Negocio Eliminado",negocio })
+        } else  {
+            res.json({ mensaje: "Error Al Eliminar Negocio" });
+        }
+    }).catch((error) => console.error('Error al guardar el usuario', error));
 }
