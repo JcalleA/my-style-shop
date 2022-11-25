@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/www"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "mongoose": "^6.7.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
+    "react-scripts": "^5.0.1",
     "vercel": "^28.5.6"
   }
 }
