@@ -16,8 +16,9 @@ router.get('/getnegocio', auth , negocioController.getNegocio);
 router.get('/getnegocios', negocioController.getNegocios);
 // //put
 // router.put('/update', negocioController.update);
-router.put('/remove', negocioController.removerNegocio);
+
 // //delete
 // router.delete('/deleteUser/:id', negocioController.remove);
+router.delete('/remove', negocioController.removerNegocio);
 
 module.exports = router;

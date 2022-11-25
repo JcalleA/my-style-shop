@@ -8,6 +8,8 @@ const logger = require('morgan');
 const cors = require("cors");
 const renovationToken = require("./controllers/RenovationToken")
 const authToken = require("./auth/auth");
+
+
 // database 
 const database = require('./config/database');
 // routers
@@ -16,10 +18,14 @@ const negociosRouter = require('./routes/negocio.router');
 const adminRouter = require('./routes/admin.router');
 const empleadoRouter = require('./routes/empleadoRouter');
 const citasRouter = require('./routes/cita.router');
+const { default: mongoose } = require('mongoose');
 //mongo connection
 database.mongoConnect();
 
 const app = express();
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -41,6 +47,7 @@ app.use('/api/cita', citasRouter);
 app.use((req, res, next) => {
     next(createError(404));
 });
+
 
 //eror handler
 app.use((err, req, res,) => {
