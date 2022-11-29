@@ -88,9 +88,9 @@ exports.getNegocios = (req, res) => {
 exports.removerNegocio = async (req, res) => {
     const { nombre, ciudad, correo, telefono, id, imagenUrl } = req.body;
 
-    Negocio.findOneAndDelete( correo ).then((negocio) => {
+    Negocio.findOneAndDelete( {correo:correo} ).then((negocio) => {
         if (negocio) {
-            return res.json({ mensaje: "Negocio Eliminado",negocio })
+            return res.json({ mensaje: "Negocio Eliminado ",negocio })
         } else  {
             res.json({ mensaje: "Error Al Eliminar Negocio" });
         }
