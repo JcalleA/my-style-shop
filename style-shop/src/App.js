@@ -8,9 +8,9 @@ import Container from 'react-bootstrap/Container';
 import Servicios from './routes/servicios';
 import Login from './components/Login/FormLogin';
 import Registro from "./components/Registro/Registro";
-import Negocio from "./routes/negocio";
 import Footer from "./components/Footer/Footer";
 import { Spinner } from "react-bootstrap";
+import NegocioRoute from "./routes/negocio";
 
 
 function App() {
@@ -32,7 +32,7 @@ const nuevaCita = React.lazy(() =>
                     <Route path="/registro" element={<Registro />} />
                     <Route exact path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/negocio" element={<Negocio />} />
+                    <Route path="/negocio" element={<NegocioRoute />} />
                     <Route path="/citas" element={<CitasUsers />} />
                     <Route path="/newCita" element={<nuevaCita />} />
                 </Routes>

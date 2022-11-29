@@ -16,7 +16,7 @@ const Servicios = () => {
             
 
             axios
-                .get("http://localhost:3001/api/users/getuser", {
+                .get("https://backstyleshop.herokuapp.com/api/users/getuser", {
                     headers: {
                         'Authorization': `Bearer ${Token}`
                     }

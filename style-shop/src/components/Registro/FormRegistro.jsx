@@ -43,7 +43,7 @@ const FormRegistro = props => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/api/users/registrar", form)
+            .post("https://backstyleshop.herokuapp.com/api/users/registrar", form)
             .then((res) => {
                 const { data } = res;
                 setMensaje(data)

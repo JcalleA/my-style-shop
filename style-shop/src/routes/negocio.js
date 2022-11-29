@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Navigate } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../contexts/AuthContext";
+import React, { useEffect, useState, useContext } from "react";
 import FormRegistroNegocio from "../components/RegistroNegocio/FormRegistroNegocio";
+import AuthContext from "../contexts/AuthContext";
 
-const Negocio = () => {
+
+const NegocioRoute = () => {
+
 
     const { auth } = useContext(AuthContext);
 
@@ -14,7 +15,7 @@ const Negocio = () => {
         const [negocio, setNegocio] = useState([])
         useEffect(() => {
             axios
-                .get("http://localhost:3001/api/negocio/getnegocio", {
+                .get("https://backstyleshop.herokuapp.com/api/negocio/getnegocio", {
                     headers: {
                         'Authorization': `Bearer ${Token}`
                     }
@@ -33,19 +34,19 @@ const Negocio = () => {
 
         return (
             negocio ? (
-                <div className="row">
-                    
-                            <div className="card bg-dark border-white text-white">
-                                <img height="250" width="auto" src={negocio.imagenUrl} className="card-img" />
-                                <div className="card-img-overlay">
-                                    <h5 className="card-title">{negocio.nombre}</h5>
-                                    <p className="card-text auto pe-2">{negocio.ciudad}</p>
-                                    <p className="card-text auto pe-2">{negocio.telefono}</p>
-                                </div>
-                            </div>
+
+                <div className=" mt-3 text-center">
+                    <div className="card bg-dark border-white text-white">
+                        <img height="300" width="auto" src={negocio.imagenUrl} className="rounded mx-auto d-block" />
+                        <div className="card-body">
+                            <h5 className="card-title">{negocio.nombre}</h5>
+                            <p className="card-text auto pe-2">{negocio.ciudad}</p>
+                            <p className="card-text auto pe-2">{negocio.telefono}</p>
                         </div>
-                    
-                
+                    </div>
+                    <h1>Registra Negocio</h1>
+                    <FormRegistroNegocio></FormRegistroNegocio>
+                </div>
 
             ) : (
                 <div >
@@ -58,4 +59,4 @@ const Negocio = () => {
     }
 };
 
-export default Negocio;
+export default NegocioRoute;
