@@ -19,6 +19,6 @@ router.get('/getnegocios', negocioController.getNegocios);
 
 // //delete
 // router.delete('/deleteUser/:id', negocioController.remove);
-router.delete('/remove', negocioController.removerNegocio);
+router.delete('/remove/:correo', negocioController.removerNegocio);
 
 module.exports = router;
