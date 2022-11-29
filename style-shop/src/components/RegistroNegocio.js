@@ -26,7 +26,7 @@ const date = new Date();
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/api/users/registrarnegocio", form)
+            .post("https://backstyleshop.herokuapp.com/api/users/registrarnegocio", form)
             .then(({ data }) => console.log(data));
 
     };
@@ -41,7 +41,7 @@ const date = new Date();
                         className='form-control'
                         type="text"
                         name="nombre"
-                        placeholder="Escriba Su Nombre"
+                        placeholder="Nombre del negocio"
                         value={form.nombre}
                         onChange={onUpdateField}
                     />

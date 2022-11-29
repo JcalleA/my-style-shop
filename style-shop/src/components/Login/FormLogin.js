@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +7,11 @@ import '../components.css'
 import { ContainerFormLogin, ParrafoAvisoRegister, ContainerLogin} from './login-styles.jsx';
 import { ContainerInput, Button } from '../../styles/utilStyles';
 import SpinnerSmall from '../Spinner/SpinnerSmall';
+import AuthContext from '../../contexts/AuthContext';
 
 
 const FormLogin = props => {
+    const { handleAuth } = useContext(AuthContext);
     const [form, setForm] = useState({
         correo: "",
         password: "",
@@ -32,7 +34,7 @@ const FormLogin = props => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/api/users/login", form)
+            .post("https://backstyleshop.herokuapp.com/api/users/login", form)
             .then((res) => {
                 const { data } = res;
                 const date= new Date()
@@ -45,8 +47,7 @@ const FormLogin = props => {
                     setTimeout(() => {
                         localStorage.setItem("user",JSON.stringify(datos));
                         setMensaje("");
-                        
-                        navigate('/',{ replace: true });
+                        navigate('/');
                     }, 1500);
                 }
             })

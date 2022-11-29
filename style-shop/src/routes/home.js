@@ -6,12 +6,12 @@ import AuthContext from "../contexts/AuthContext";
 
 const Home = () => {
 
-    const { auth } = useContext(AuthContext);
+    const { auth, handleLogout } = useContext(AuthContext);
     return (
         auth ? (
             <div>
                 <h1> {auth.usuario.nombre}</h1>
-                <button onClick={() => Navigate("/logout")} > Sign Out</button>
+                <button onClick={handleLogout} > Sign Out</button>
                 <h1> Lista De Negocios </h1>
                 <Negocios></Negocios>
 

@@ -18,11 +18,12 @@ const initialAuth =()=>{
 const AuthProvider = ({children}) =>{
 
     const [auth,setAuth]=useState(initialAuth());
-    const handleAuth =(e)=>{
-            setAuth(user)
-    };
+    
+    const handleAuth =()=>setAuth(initialAuth());
+    const handleLogout =()=> localStorage.removeItem("user");
+    
 
-    const data ={auth,handleAuth};
+    const data ={auth,handleAuth,handleLogout};
 
     return <AuthContext.Provider value ={data}>{children}</AuthContext.Provider>;
 }

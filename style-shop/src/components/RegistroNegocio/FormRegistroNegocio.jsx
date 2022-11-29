@@ -41,7 +41,7 @@ const FormRegistroNegocio = props => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:3001/api/negocio/registrar", form)
+            .post("https://backstyleshop.herokuapp.com/api/negocio/registrar", form)
             .then((res) => {
                 const { data } = res;
                 setMensaje(data)
@@ -66,7 +66,7 @@ const FormRegistroNegocio = props => {
                             id="nombre"
                             type="text"
                             name="nombre"
-                            placeholder="Ingrese su nombre..."
+                            placeholder="Ingrese nombre del Negocio"
                             autoComplete="given-name"
                             value={form.nombre}
                             onChange={onUpdateField}

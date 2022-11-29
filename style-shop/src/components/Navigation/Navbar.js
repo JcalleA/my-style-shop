@@ -12,7 +12,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 const Barranav = () => {
-    const { auth } = useContext(AuthContext);
+    const { auth,handleLogout } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -74,9 +74,9 @@ const Barranav = () => {
                                 <li>
                                     <Link to="/negocio">Negocio</Link>
                                 </li>
-                                <Link to="/logout">
-                            <button className="btn btn__login">Logout</button>
-                        </Link>
+                                
+                            <button className="btn btn__login" onClick={handleLogout}>Logout</button>
+                        
                             </ul>
                             :
                             <ul>

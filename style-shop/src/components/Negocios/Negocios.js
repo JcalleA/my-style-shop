@@ -4,11 +4,12 @@ import Negocio from './Negocio/Negocio';
 
 const Negocios = () => {
     const [negocios, setNegocios] = useState([])
+    
         
     useEffect(() => {
             
             axios
-                .get("http://localhost:3001/api/negocio/getnegocios")
+                .get("https://backstyleshop.herokuapp.com/api/negocio/getnegocios")
                 .then((res) => {
                     const { data } = res;
                     setNegocios(data)
@@ -19,6 +20,7 @@ const Negocios = () => {
                     setNegocios(datos)
                 })
         }, []);
+        
 
     return (
         <div className="row">
