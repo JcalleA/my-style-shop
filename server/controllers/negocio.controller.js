@@ -86,9 +86,9 @@ exports.getNegocios = (req, res) => {
     }, console.error("error al consultar los negocios"));
 }
 exports.removerNegocio = async (req, res) => {
-    const { nombre, ciudad, correo, telefono, id, imagenUrl } = req.body;
+    const email = req.params.correo
 
-    Negocio.findOneAndDelete( {correo:correo} ).then((negocio) => {
+    Negocio.findOneAndDelete( {correo:email} ).then((negocio) => {
         if (negocio) {
             return res.json({ mensaje: "Negocio Eliminado ",negocio })
         } else  {
