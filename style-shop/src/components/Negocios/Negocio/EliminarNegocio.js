@@ -5,13 +5,9 @@ import Swal from "sweetalert2";
 const EliminarNegocio= (email)=>{
 
     
-        const form = {
-            correo: email
-        }
-        console.log(email);
-        console.log(form);
+        
         axios
-            .delete("https://backstyleshop.herokuapp.com/api/negocio/remove", form)
+            .delete("https://backstyleshop.herokuapp.com/api/negocio/remove/"+email)
             .then((res) => {
                 const { data } = res;
                 Swal.fire(data.mensaje,form.correo)
